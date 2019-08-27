@@ -34,19 +34,19 @@ function moveRandomly() {
     for (let i=0; i<moves.length; i++) {
         const key = moves[i]
         console.log(`MOVE ${movementNameForKey(key)}!`)
-        robot.keyToggle(key, "up");
+        robot.keyToggle(key, "down");
     }
-    robot.keyTap("spacebar")
+    robot.keyTap("space")
     for (let i=0; i<moves.length; i++) {
         const key = moves[i]
         console.log(`MOVE ${movementNameForKey(key)}!`)
-        robot.keyToggle(key, "down");
+        robot.keyToggle(key, "up");
     }
-    robot.keyTap("spacebar")
+    robot.keyTap("space")
 }
 
 console.log("Started random movement loop...")
-robot.setKeyboardDelay(250)
+robot.setKeyboardDelay(100)
 var isReady = true;
 setInterval(() => {
     if (isReady) {

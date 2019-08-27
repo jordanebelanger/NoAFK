@@ -1,7 +1,7 @@
 var robot = require("robotjs");
 
 const minLoopInterval = 15000;
-const maxLoopInterval = 300000;
+const maxLoopInterval = 60000;
 
 function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
@@ -34,12 +34,19 @@ function moveRandomly() {
     for (let i=0; i<moves.length; i++) {
         const key = moves[i]
         console.log(`MOVE ${movementNameForKey(key)}!`)
-        robot.keyTap(key);
+        robot.keyToggle(key, "up");
     }
+    robot.keyTap("spacebar")
+    for (let i=0; i<moves.length; i++) {
+        const key = moves[i]
+        console.log(`MOVE ${movementNameForKey(key)}!`)
+        robot.keyToggle(key, "down");
+    }
+    robot.keyTap("spacebar")
 }
 
 console.log("Started random movement loop...")
-
+robot.setKeyboardDelay(250)
 var isReady = true;
 setInterval(() => {
     if (isReady) {

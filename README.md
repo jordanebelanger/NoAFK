@@ -10,3 +10,4 @@ Stay logged in by running this nodejs script
 
 # Usage
 - In the console, navigate to the script directory and run 'node main.js'
+- Let the script run in the console and switch back to World of Warcraft window.

@@ -15,21 +15,40 @@ function shuffle(a) {
     return a;
 }
 
+function movementNameForKey(key) {
+    switch(key) {
+        case "w":
+          return "FORWARD"
+        case "a":
+            return "LEFT"
+        case "s":
+            return "BACK"
+        case "d":
+            return "RIGHT"
+    } 
+}
+
 function moveRandomly() {
     var moves = ["w", "a", "s", "d"];
     shuffle(moves);
     for (let i=0; i<moves.length; i++) {
-        robot.keyTap(moves[i]);
+        const key = moves[i]
+        console.log(`MOVE ${movementNameForKey(key)}!`)
+        robot.keyTap(key);
     }
 }
+
+console.log("Started random movement loop...")
 
 var isReady = true;
 setInterval(() => {
     if (isReady) {
         isReady = false;
+        const nextMoveInterval = getRandomInteger(minLoopInterval, maxLoopInterval);
+        console.log(`Moving randomly in ${Math.trunc(nextMoveInterval / 1000)} seconds`)
         setTimeout(() => {
             moveRandomly();
             isReady = true;
-        }, getRandomInteger(minLoopInterval, maxLoopInterval))
+        }, nextMoveInterval)
     }
 }, 5000)

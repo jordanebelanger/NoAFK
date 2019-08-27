@@ -1,0 +1,11 @@
+{
+  "name": "no-afk",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main.js"
+  },
+  "dependencies": {
+    "robotjs": "git+https://github.com/sidharth0094/robotjs.git"
+  }
+}

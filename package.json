@@ -6,6 +6,6 @@
     "start": "node main.js"
   },
   "dependencies": {
-    "robotjs": "git+https://github.com/sidharth0094/robotjs.git"
+    "robotjs": "https://github.com/sidharth0094/robotjs/tarball/master"
   }
 }

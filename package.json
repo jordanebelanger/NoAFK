@@ -1,11 +1,17 @@
 {
-  "name": "no-afk",
+  "name": "noafk",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "build": "tsc",
+    "build:watch": "tsc --watch --incremental",
+    "run": "node build/main.js"
   },
   "dependencies": {
     "robotjs": "https://github.com/sidharth0094/robotjs/tarball/master"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.3",
+    "typescript": "^3.6.2"
   }
 }

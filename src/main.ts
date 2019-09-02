@@ -1,40 +1,25 @@
-import robot = require("robotjs")
-import { getRandomInteger, shuffleArray } from "./utils/rand";
+import { Mover } from "./mover"
+import { getRandomInteger } from './utils/random'
+import { MouseKeyboardMover } from './movers/mouse+keyboard';
 
-const minLoopInterval = 15000;
-const maxLoopInterval = 60000;
+const minLoopInterval = 5000
+const maxLoopInterval = 25000
 
-robot.setKeyboardDelay(100)
+var isReady = true
 
-function moveRandomly() {
-    var moves = ["w", "a", "s", "d"];
-    shuffleArray(moves);
-    for (let i=0; i<moves.length; i++) {
-        const key = moves[i]
-        robot.keyToggle(key, "down");
-    }
-    robot.keyTap("space")
-    for (let i=0; i<moves.length; i++) {
-        const key = moves[i]
-        robot.keyToggle(key, "up");
-    }
-    robot.keyTap("space")
-}
-
-var isReady = true;
-function main() {
+function main(minLoopInterval: number, maxLoopInterval: number, mover: Mover) {
     if (isReady) {
-        isReady = false;
-        const nextMoveInterval = getRandomInteger(minLoopInterval, maxLoopInterval);
+        isReady = false
+        const nextMoveInterval = getRandomInteger(minLoopInterval, maxLoopInterval)
         console.log(`Moving randomly in ${Math.trunc(nextMoveInterval / 1000)} seconds`)
         setTimeout(() => {
             console.log('Moving randomly!')
-            moveRandomly();
-            isReady = true;
+            mover.moveRandomly()
+            isReady = true
         }, nextMoveInterval)
     }
 }
-main()
+
 setInterval(() => {
-    main()
-}, 5000)
+    main(minLoopInterval, maxLoopInterval, new MouseKeyboardMover)
+}, 1000)
